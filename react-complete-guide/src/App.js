@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import Person from './Person/Person'
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   state = {
@@ -66,6 +67,18 @@ class App extends Component {
 
   render() {
 
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
+    };
     let person = null;
     if (this.state.showPersons === true) {
       person = (<div>
@@ -73,34 +86,52 @@ class App extends Component {
         <p>This is rendered through if else cond and JS. Always remeber that react components are Java script. Every thing inside render
         is executed when components are re-rendered.
   </p>
-      </div>)
+
+      </div>
+      )
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'blue',
+        color: 'black'
+      }
+
+    }
+
+    const clases = [];
+    if (this.state.persons.length <= 2) {
+      clases.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      clases.push('bold'); //bold is class in app.css
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        <button className="name-change-button" onClick={this.toggleNameHandler}>Switch Name</button>
-        {this.state.showPersons ?
-          <div>
-            {this.state.persons.map((person, index) => {
-              return <Person click={this.deletePersonHandler.bind(this, index)} name={person.name} age={person.age}
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App</h1>
+          <p className={clases.join(' ')}>This is really working!</p>
+          <button style={style} onClick={this.toggleNameHandler}>Switch Name</button>
+          {this.state.showPersons ?
+            <div>
+              {this.state.persons.map((person, index) => {
+                return <Person click={this.deletePersonHandler.bind(this, index)} name={person.name} age={person.age}
 
-                key={person.id}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              // buttonClick={this.nameChangedHandler.bind(this, person.name, person.id)} 
-              />
-            })}
+                  key={person.id}
+                  changed={(event) => this.nameChangedHandler(event, person.id)}
+                // buttonClick={this.nameChangedHandler.bind(this, person.name, person.id)} 
+                />
+              })}
 
-          </div> : null}
-        {person}
-      </div>
+            </div> : null}
+          {person}
+        </div>
+      </StyleRoot>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default App;
+export default Radium(App);
 
 
 

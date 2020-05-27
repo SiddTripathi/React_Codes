@@ -1,12 +1,18 @@
 import React from 'react';
+import Radium from 'radium';
 
 //The Css file will be injected directly to index.html file by the help of Webpack inbuilt library
 import './Person.css'
 
 
 const person = (details) => {
+    const style = {
+        '@media (min-width:500px)': {
+            width: '450px'
+        }
+    };
     return (
-        <div className='Person'>
+        <div className='Person' style={style}>
             <p onClick={details.click}>I'm {details.name} and I am {details.age}!!</p>
 
             <div>
@@ -20,7 +26,7 @@ const person = (details) => {
 
 
 
-export default person;
+export default Radium(person);
 
 
 /* Comments
