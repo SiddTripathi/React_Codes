@@ -4,7 +4,20 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import Person from './Person/Person'
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
+//import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
+const StyledButton = styled.button`
+   background-color: ${props => props.myalt ? 'red' : 'green'};
+   color: white;
+   font: inherit;
+   border: 1px solid blue;
+   padding: 8px;
+   cursor: pointer;
+   &:hover {
+     background-color: ${props => props.myalt ? 'blue' : 'lightgreen'};
+     color: black;
+   }
+   `
 
 class App extends Component {
   state = {
@@ -67,18 +80,18 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'lightgreen',
+    //     color: 'black'
+    //   }
+    // };
     let person = null;
     if (this.state.showPersons === true) {
       person = (<div>
@@ -89,11 +102,11 @@ class App extends Component {
 
       </div>
       )
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'blue',
-        color: 'black'
-      }
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'blue',
+      //   color: 'black'
+      // }
 
     }
 
@@ -106,32 +119,34 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I'm a React App</h1>
-          <p className={clases.join(' ')}>This is really working!</p>
-          <button style={style} onClick={this.toggleNameHandler}>Switch Name</button>
-          {this.state.showPersons ?
-            <div>
-              {this.state.persons.map((person, index) => {
-                return <Person click={this.deletePersonHandler.bind(this, index)} name={person.name} age={person.age}
 
-                  key={person.id}
-                  changed={(event) => this.nameChangedHandler(event, person.id)}
-                // buttonClick={this.nameChangedHandler.bind(this, person.name, person.id)} 
-                />
-              })}
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p className={clases.join(' ')}>This is really working!</p>
+        <StyledButton myalt={this.state.showPersons} onClick={this.toggleNameHandler}>Switch Name</StyledButton>
+        {this.state.showPersons ?
+          <div>
+            {this.state.persons.map((person, index) => {
+              return <Person click={this.deletePersonHandler.bind(this, index)} name={person.name} age={person.age}
 
-            </div> : null}
-          {person}
-        </div>
-      </StyleRoot>
+                key={person.id}
+                changed={(event) => this.nameChangedHandler(event, person.id)}
+              // buttonClick={this.nameChangedHandler.bind(this, person.name, person.id)} 
+              />
+            })}
+
+          </div> : null}
+        {person}
+      </div>
+
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default Radium(App);
+export default App;
+
+//export default Radium(App);
 
 
 
