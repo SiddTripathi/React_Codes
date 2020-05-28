@@ -1,10 +1,15 @@
 //useState allows us to manage states in class based components.
 
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+
 import Person from './Person/Person'
 import './App.css';
 //import Radium, { StyleRoot } from 'radium';
+
+
+
+/*
+*****Using Styled component - inline CSS*****
 import styled from 'styled-components';
 const StyledButton = styled.button`
    background-color: ${props => props.myalt ? 'red' : 'green'};
@@ -18,7 +23,7 @@ const StyledButton = styled.button`
      color: black;
    }
    `
-
+*/
 class App extends Component {
   state = {
     persons: [
@@ -80,18 +85,22 @@ class App extends Component {
 
   render() {
 
-    // const style = {
-    //   backgroundColor: 'green',
-    //   color: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover': {
-    //     backgroundColor: 'lightgreen',
-    //     color: 'black'
-    //   }
-    // };
+    /*
+    *Object
+    *****Using inline style through style object****
+     const style = {
+       backgroundColor: 'green',
+       color: 'white',
+       font: 'inherit',
+       border: '1px solid blue',
+       padding: '8px',
+       cursor: 'pointer',
+       ':hover': {
+         backgroundColor: 'lightgreen',
+         color: 'black'
+       }
+     };
+     */
     let person = null;
     if (this.state.showPersons === true) {
       person = (<div>
@@ -102,11 +111,13 @@ class App extends Component {
 
       </div>
       )
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'blue',
-      //   color: 'black'
-      // }
+
+      /*Object--
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'blue',
+        color: 'black'
+      }*/
 
     }
 
@@ -123,7 +134,7 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={clases.join(' ')}>This is really working!</p>
-        <StyledButton myalt={this.state.showPersons} onClick={this.toggleNameHandler}>Switch Name</StyledButton>
+        <button className='button' onClick={this.toggleNameHandler}>Switch Name</button>
         {this.state.showPersons ?
           <div>
             {this.state.persons.map((person, index) => {
