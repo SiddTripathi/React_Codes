@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 
 import Person from './Person/Person'
-import './App.css';
+import classesmodule from './App.css';
 //import Radium, { StyleRoot } from 'radium';
 
 
@@ -131,10 +131,10 @@ class App extends Component {
 
     return (
 
-      <div className="App">
+      <div className={classesmodule.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={clases.join(' ')}>This is really working!</p>
-        <button className='button' onClick={this.toggleNameHandler}>Switch Name</button>
+        <button className={classesmodule.button} onClick={this.toggleNameHandler}>Switch Name</button>
         {this.state.showPersons ?
           <div>
             {this.state.persons.map((person, index) => {
