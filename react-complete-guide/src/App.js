@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 
 import Person from './Person/Person'
 import classesmodule from './App.css';
-//import Radium, { StyleRoot } from 'radium';
+
+
 
 
 
@@ -141,11 +142,13 @@ class App extends Component {
         {this.state.showPersons ?
           <div>
             {this.state.persons.map((person, index) => {
-              return <Person click={this.deletePersonHandler.bind(this, index)} name={person.name} age={person.age}
-
+              return <Person click={this.deletePersonHandler.bind(this, index)}
+                name={person.name}
+                age={person.age}
                 key={person.id}
+
                 changed={(event) => this.nameChangedHandler(event, person.id)}
-              // buttonClick={this.nameChangedHandler.bind(this, person.name, person.id)} 
+
               />
             })}
 
