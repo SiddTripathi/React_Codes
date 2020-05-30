@@ -101,6 +101,7 @@ class App extends Component {
        }
      };
      */
+    let btnClass = [classesmodule.button];
     let person = null;
     if (this.state.showPersons === true) {
       person = (<div>
@@ -119,14 +120,16 @@ class App extends Component {
         color: 'black'
       }*/
 
+      btnClass.push(classesmodule.red)
+
     }
 
     const clases = [];
     if (this.state.persons.length <= 2) {
-      clases.push('red');
+      clases.push(classesmodule.red);
     }
     if (this.state.persons.length <= 1) {
-      clases.push('bold'); //bold is class in app.css
+      clases.push(classesmodule.bold); //bold is class in app.css
     }
 
     return (
@@ -134,7 +137,7 @@ class App extends Component {
       <div className={classesmodule.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={clases.join(' ')}>This is really working!</p>
-        <button className={classesmodule.button} onClick={this.toggleNameHandler}>Switch Name</button>
+        <button className={btnClass.join(' ')} onClick={this.toggleNameHandler}>Switch Name</button>
         {this.state.showPersons ?
           <div>
             {this.state.persons.map((person, index) => {
