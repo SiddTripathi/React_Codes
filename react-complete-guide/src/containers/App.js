@@ -8,6 +8,11 @@ import Cockpit from '../components/cockpit/cockpit'
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor')
+  }
+
   state = {
     persons: [
       { id: 'P101', name: 'Max', age: 28 },
@@ -18,6 +23,14 @@ class App extends Component {
     showPersons: false
   }
 
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDervivedStateFromProps', props)
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount')
+  }
 
   toggleNameHandler = () => {
 
@@ -50,26 +63,38 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('[App.js] render')
     let person = null;
     if (this.state.showPersons === true) {
-      person = (<div>
-        <h1>This is correct</h1>
-        <p>This is rendered through if else cond and JS. Always remeber that react components are Java script. Every thing inside render
-        is executed when components are re-rendered.
+      person = (
+
+        <div>
+          <h1>This is correct</h1>
+          <p>This is rendered through if else cond and JS. Always remeber that react components are Java script. Every thing inside render
+          is executed when components are re-rendered.
   </p>
 
-      </div>
+        </div>
       )
 
     }
     return (
 
       <div className={classesmodule.App}>
+        <Cockpit
+          title={this.props.appTitle}
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          toggleNameHandler={this.toggleNameHandler}
+        >
+
+        </Cockpit>
+
 
         {this.state.showPersons ?
           <div>
             <Persons
+
               persons={this.state.persons}
               clicked={this.deletePersonHandler}
               changed={this.nameChangedHandler}
@@ -77,13 +102,7 @@ class App extends Component {
 
 
           </div> : null}
-        <Cockpit
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          toggleNameHandler={this.toggleNameHandler}
-        >
-          {person}
-        </Cockpit>
+        {person}
 
       </div>
 
