@@ -1,32 +1,33 @@
-import React from 'react';
-//import Radium from 'radium';
+import React, { Component } from 'react';
 
 
-// import styled from 'styled-components'; //better way to style than radium
-
-//The Css file will be injected directly to index.html file by the help of Webpack inbuilt library
 import personcssmod from './Person.css'
 
 
-const person = (details) => {
-    console.log('[Person.js] rendering...');
-    return (
-        <div className={personcssmod.Person} >
+class Person extends Component {
 
-            < p onClick={details.click} > I'm {details.name} and I am {details.age}!!</p>
+    render() {
+        console.log('[Person.js] rendering...');
+        return (
+            <div className={personcssmod.Person} >
 
-            < div >
-                {details.children}
+                < p onClick={this.props.click} > I'm {this.props.name} and I am {this.props.age}!!</p>
+
+                < div >
+                    {this.props.children}
+                </div >
+                <input type='text' onChange={this.props.changed} value={this.props.name}></input>
+
             </div >
-            <input type='text' onChange={details.changed} value={details.name}></input>
+        )
+    }
 
-        </div >
-    )
+
 }
 
 
 
 
-export default person;
+export default Person;
 
 
