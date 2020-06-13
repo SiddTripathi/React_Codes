@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classesmodule from './Cockpit.css'
 const cockpit = (props) => {
+    useEffect(() => {
+        console.log('[Cockpit.js] useeffect cycle')
+    })
 
     const clases = [];
     let btnClass = [classesmodule.button];
