@@ -1,9 +1,31 @@
 import React, { useEffect } from 'react'
 import classesmodule from './Cockpit.css'
 const cockpit = (props) => {
+    /*
+     useEffect(() => {
+         console.log('[Cockpit.js] useeffect cycle')
+         // the use effect runs every time compnenent cockpit is run. 
+         //in order to make it run on specific occassion - say when person changes setTimeout. Now this will run
+         //only on first render and then whenevr persons are updated
+         setTimeout(() => {
+             alert('Saved this data');
+         }, 1000)
+         return () => {
+             console.log('Cleanup funciton runs after person is edited')
+         }
+     }, [props.persons])
+ */
+    /*if we want to run our useeffect just once, pass an empty array in the end. Array means dependencies. Empty array 
+    no dependencies. and hence no rerun on change. This will run only first time render*/
     useEffect(() => {
-        console.log('[Cockpit.js] useeffect cycle')
-    })
+        console.log('[Cockpit.js] Use effect cycle')
+        setTimeout(() => {
+            alert('Run only once')
+        }, 1000)
+        return () => {
+            console.log('Cleanup function runs after the component is unmounted')
+        }
+    }, [])
 
     const clases = [];
     let btnClass = [classesmodule.button];
