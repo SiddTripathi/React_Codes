@@ -26,17 +26,22 @@ const cockpit = (props) => {
             console.log('Cleanup function runs after the component is unmounted')
         }
     }, [])
-
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd Use effect')
+        return () => {
+            console.log('cleanup in 2nd effect')
+        }
+    })
     const clases = [];
     let btnClass = [classesmodule.button];
     if (props.showPersons === true) {
         btnClass.push(classesmodule.red)
     }
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
         clases.push(classesmodule.red);
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         clases.push(classesmodule.bold); //bold is class in app.css
     }
 
@@ -51,4 +56,4 @@ const cockpit = (props) => {
 
 }
 
-export default cockpit;
+export default React.memo(cockpit);

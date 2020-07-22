@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 import personcssmod from './Person.css'
+import Aux from '../../../HOC/Auxiliary'
 
 
 class Person extends Component {
@@ -9,17 +10,19 @@ class Person extends Component {
     render() {
         console.log('[Person.js] rendering...');
         return (
-            <div className={personcssmod.Person} >
+            <Aux className={personcssmod.Person}>
+                < p key="k1" onClick={this.props.click} > I'm {this.props.name} and I am {this.props.age}!!</p>
 
-                < p onClick={this.props.click} > I'm {this.props.name} and I am {this.props.age}!!</p>
-
-                < div >
+                < div key="k2" >
                     {this.props.children}
                 </div >
-                <input type='text' onChange={this.props.changed} value={this.props.name}></input>
+                <input key="k3" type='text' onChange={this.props.changed} value={this.props.name}></input>
+            </Aux>
 
-            </div >
-        )
+
+
+
+        );
     }
 
 
@@ -31,3 +34,13 @@ class Person extends Component {
 export default Person;
 
 
+/* <div className={personcssmod.Person} >
+
+< p onClick={this.props.click} > I'm {this.props.name} and I am {this.props.age}!!</p>
+
+< div >
+    {this.props.children}
+</div >
+<input type='text' onChange={this.props.changed} value={this.props.name}></input>
+
+</div > */
