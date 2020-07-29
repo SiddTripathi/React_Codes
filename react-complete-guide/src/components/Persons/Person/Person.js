@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types'
 
 import personcssmod from './Person.css'
 import Aux from '../../../HOC/Auxiliary'
@@ -29,8 +29,14 @@ class Person extends Component {
 
 }
 
-
-
+//if some one passes age property as string instead of number or name as number instead of string, the proptypes will throw warning
+// this helps when we are working in teams, and other members use our components.
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+}
 
 export default withClass(Person, personcssmod.Person);
 
