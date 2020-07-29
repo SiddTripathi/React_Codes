@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import personcssmod from './Person.css'
 import Aux from '../../../HOC/Auxiliary'
+import withClass from '../../../HOC/withClass'
 
 
 class Person extends Component {
@@ -31,7 +32,7 @@ class Person extends Component {
 
 
 
-export default Person;
+export default withClass(Person, personcssmod.Person);
 
 
 /* <div className={personcssmod.Person} >

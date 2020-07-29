@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import Persons from '../components/Persons/persons'
 import classesmodule from './App.css';
 import Cockpit from '../components/cockpit/cockpit'
-import WithClass from '../HOC/WithClass'
+import Aux from '../HOC/Auxiliary'
+import withClass from '../HOC/withClass'
 
 
 
@@ -91,7 +92,7 @@ class App extends Component {
     }
     return (
 
-      <WithClass classes={classesmodule.App}>
+      <Aux classes={classesmodule.App}>
         <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Button</button>
         {this.state.showCockpit ?
           <Cockpit
@@ -117,14 +118,14 @@ class App extends Component {
           </div> : null}
         {person}
 
-      </WithClass>
+      </Aux>
 
     );
 
   }
 }
 
-export default App;
+export default withClass(App, classesmodule.App);
 
 
 

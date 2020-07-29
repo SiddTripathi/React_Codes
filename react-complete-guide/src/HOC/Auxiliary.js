@@ -1,8 +1,4 @@
-import React from 'react'
 
-const auxiliary = props => (
-    <div className={props.className}>
-        {props.children}
-    </div>
-);
+
+const auxiliary = props => props.children;
 export default auxiliary;
