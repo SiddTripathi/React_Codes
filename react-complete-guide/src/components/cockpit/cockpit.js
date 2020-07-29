@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import classesmodule from './Cockpit.css'
 const cockpit = (props) => {
+    const toggleBtnRef = useRef(null); //reference for functional components
     /*
      useEffect(() => {
          console.log('[Cockpit.js] useeffect cycle')
@@ -19,9 +20,10 @@ const cockpit = (props) => {
     no dependencies. and hence no rerun on change. This will run only first time render*/
     useEffect(() => {
         console.log('[Cockpit.js] Use effect cycle')
-        setTimeout(() => {
-            alert('Run only once')
-        }, 1000)
+        // setTimeout(() => {
+        //     alert('Run only once')
+        // }, 1000)
+        toggleBtnRef.current.click()
         return () => {
             console.log('Cleanup function runs after the component is unmounted')
         }
@@ -49,7 +51,7 @@ const cockpit = (props) => {
         <div className={classesmodule.Cockpit}>
             <h1>{props.title}</h1>
             <p className={clases.join(' ')}>This is really working!</p>
-            <button className={btnClass.join(' ')} onClick={props.toggleNameHandler}>Switch Name</button>
+            <button ref={toggleBtnRef} className={btnClass.join(' ')} onClick={props.toggleNameHandler}>Switch Name</button>
         </div>
     );
 

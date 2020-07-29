@@ -7,7 +7,15 @@ import withClass from '../../../HOC/withClass'
 
 
 class Person extends Component {
+    constructor(props) {
+        super(props)
+        this.inputElementRef = React.createRef(); //works only for references in class based components
+    }
 
+    componentDidMount() {
+        // this.inputElement.focus()
+        this.inputElementRef.current.focus()
+    }
     render() {
         console.log('[Person.js] rendering...');
         return (
@@ -17,7 +25,15 @@ class Person extends Component {
                 < div key="k2" >
                     {this.props.children}
                 </div >
-                <input key="k3" type='text' onChange={this.props.changed} value={this.props.name}></input>
+                <input
+                    key="k3"
+                    type='text'
+                    onChange={this.props.changed}
+                    value={this.props.name}
+                    //ref={(inputEl) => { this.inputElement = inputEl }}
+                    ref={this.inputElementRef}>
+
+                </input>
             </Aux>
 
 
@@ -41,13 +57,11 @@ Person.propTypes = {
 export default withClass(Person, personcssmod.Person);
 
 
-/* <div className={personcssmod.Person} >
-
+/*
+<div className={personcssmod.Person} >
 < p onClick={this.props.click} > I'm {this.props.name} and I am {this.props.age}!!</p>
-
 < div >
     {this.props.children}
 </div >
 <input type='text' onChange={this.props.changed} value={this.props.name}></input>
-
 </div > */
