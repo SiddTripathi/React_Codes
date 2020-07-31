@@ -12,23 +12,19 @@ class Person extends Component {
         super(props)
         this.inputElementRef = React.createRef(); //works only for references in class based components
     }
-
+    static contextType = AuthContext;
     componentDidMount() {
         // this.inputElement.focus()
         this.inputElementRef.current.focus()
+        console.log(this.context.authenticated)
     }
     render() {
         console.log('[Person.js] rendering...');
         return (
             <Aux className={personcssmod.Person}>
+                {this.context.authenticated ? <p>Authenticated Successfully</p> : <p>Login Please</p>}
 
-                <AuthContext.Consumer>
 
-                    {
-                        context =>
-                            context.authenticated ? <p>Authenticated Successfully</p> : <p>Login Please</p>}
-
-                </AuthContext.Consumer>
                 < p key="k1" onClick={this.props.click} > I'm {this.props.name} and I am {this.props.age}!!</p>
 
                 < div key="k2" >
